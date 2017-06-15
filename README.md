@@ -48,4 +48,4 @@ The other tasks' purpose are just to allow them to be called separately.
 If you want to help by adding support to compile any preprocessor, just add a Gulp task to do so and then call this task inside the "compile" task.
 
 ## License
-MIT © [Gowebit](http://www.gowebit.com.br/){:target="_blank"}
+MIT © [Gowebit](http://www.gowebit.com.br/)
