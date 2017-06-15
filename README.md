@@ -31,7 +31,7 @@ Task | Description
 --- | ---
 default | Firstly calls the "build" task, then calls the "server" task.
 compile | Compiles the preprocessors' files from "src" folder and puts the compiled files in "app" folder.
-build | Firstly calls the "compile" task, then minify the HTML, JS, CSS and image files from "app" folder (the task that minify CSS files, also runs gulp-autoprefixer on them) and puts them (post-minified) in "dist" folder. <br /> It also copies a non-minified version of the HTML, JS and CSS with the suffix "-original" due to the fact that the minified ones maintain the originals' names (by keeping the originals' names, it's not necessary to change the import tags on the HTML file).
+build | Firstly calls the "compile" task, then minify the HTML, JS, CSS and image files from "app" folder (the task that minify CSS files, also runs gulp-autoprefixer on them) and puts them (post-minified) in "dist" folder.
 server | Runs Browsersync using the "app" folder as root directory. All watches are inside this task.
 
 The tasks listed above, are the main ones, all the others are called by one or more of the main ones.
@@ -48,4 +48,4 @@ The other tasks' purpose are just to allow them to be called separately.
 If you want to help by adding support to compile any preprocessor, just add a Gulp task to do so and then call this task inside the "compile" task.
 
 ## License
-MIT © [Gowebit](http://www.gowebit.com.br/)
+MIT © [Gowebit](http://www.gowebit.com.br/){:target="_blank"}

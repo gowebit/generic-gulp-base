@@ -16,7 +16,7 @@ var autoprefixer = require('gulp-autoprefixer');
 gulp.task('default', gulpSequence('build', 'server'));
 
 // Build task
-gulp.task('build', gulpSequence('clean-dist', 'copy-app-to-dist', 'add-filename-suffix', ['minify-img', 'minify-html', 'minify-css', 'minify-js']));
+gulp.task('build', gulpSequence('clean-dist', 'copy-app-to-dist', ['minify-img', 'minify-html', 'minify-css', 'minify-js']));
 
 // Clean the "dist" folder contents
 gulp.task('clean-dist', function() {
@@ -27,17 +27,6 @@ gulp.task('clean-dist', function() {
 // Copy all files from "app" to "dist" folder
 gulp.task('copy-app-to-dist', function() {
     return gulp.src('app/**/*')
-        .pipe(gulp.dest('dist'));
-});
-
-// The HTML, CSS and JS files on "dist" folder gets the suffix "-original" in their filenames
-gulp.task('add-filename-suffix', function() {
-    return gulp.src([
-            'dist/**/*.html',
-            'dist/**/*.css',
-            'dist/**/*.js'
-        ])
-        .pipe(rename({suffix: '-original'}))
         .pipe(gulp.dest('dist'));
 });
 
