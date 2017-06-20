@@ -32,7 +32,7 @@ gulp.task('copy-app-to-dist', function() {
 
 // Minify the HTML files from "app" folder to "dist" folder
 gulp.task('minify-html', function() {
-    return gulp.src('app/**/*.html')
+    return gulp.src('app/**/*.+(htm|html)')
         .pipe(htmlmin({
             collapseWhitespace: true,
             removeComments: true
