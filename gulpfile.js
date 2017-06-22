@@ -60,13 +60,7 @@ gulp.task('minify-js', function() {
 
 // Minify the images on "dist" folder (PNG, JPG, JPEG, GIF and BMP)
 gulp.task('minify-img', function() {
-    return gulp.src([
-            'dist/**/*.png',
-            'dist/**/*.jpg',
-            'dist/**/*.jpeg',
-            'dist/**/*.gif',
-            'dist/**/*.bmp'
-        ])
+    return gulp.src('dist/**/*.+(png|jpg|jpeg|gif|bmp)')
         .pipe(imagemin())
         .pipe(gulp.dest('dist'));
 });
