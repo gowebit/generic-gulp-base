@@ -6,3 +6,4 @@ temp/*
 *.tmp
 *.swp
 *.swo
+package-lock.json
