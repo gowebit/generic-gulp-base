@@ -26,7 +26,7 @@ gulp.task('clean-dist', function() {
 
 // Copy all files from "app" to "dist" folder
 gulp.task('copy-app-to-dist', function() {
-    return gulp.src('app/**/*')
+    return gulp.src(['app/**/*', 'app/**/.*'])
         .pipe(gulp.dest('dist'));
 });
 
