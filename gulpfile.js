@@ -9,7 +9,7 @@ var jshint = require('gulp-jshint');
 var jshintStylish = require('jshint-stylish');
 var uglify = require('gulp-uglify');
 var csslint = require('gulp-csslint');
-var cssmin = require('gulp-cssmin');
+var cleanCSS = require('gulp-clean-css');
 var autoprefixer = require('gulp-autoprefixer');
 
 // Default task
@@ -47,7 +47,7 @@ gulp.task('minify-css', function() {
             browsers: ['last 2 versions'],
             cascade: false
         }))
-        .pipe(cssmin())
+        .pipe(cleanCSS())
         .pipe(gulp.dest('dist'));
 });
 
