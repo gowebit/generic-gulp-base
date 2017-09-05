@@ -3,9 +3,24 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 ### Added
-- Usage of the "src" folder and its tasks.
 - Task to compile SASS files.
-- Task to compile LESS files.
+- Task to compile PUG files.
+
+## [0.2.0] - 2017-09-05
+### Added
+- Prepared folder structure and its respective tasks for preprocessors compilation.
+- NPM run scripts for gulp tasks.
+- "eslint".
+- ".eslintrc" file.
+- ".csslintrc" file.
+- Browsersync server stops when "gulp-ccslint" finds an error.
+- Browsersync server stops when "gulp-eslint" finds an error.
+### Changed
+- "README.md".
+- JS file name altered from "script.js" to "main.js".
+### Removed
+- "jshint".
+- "gulp-rename".
 
 ## [0.1.0] - 2017-06-11
 ### Added

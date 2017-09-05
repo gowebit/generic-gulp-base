@@ -1,48 +1,51 @@
 ## Description
-**_Please note that everything related to preprocessors and the "src" folder is still in development._**
 The purpose of this base is to easily compile the most used front-end preprocessors and to minify all the HTML, CSS and JS files of a project.
-For more details of how it works, please take a look at the [Folder structure](#folder-structure) section.
+For more details of how it works, please take a look at the [Usage](#usage) section.
 
 ## Install
-Make sure that you have gulp-cli installed globally but if you don't, just run:
+Make sure that you have gulp-cli installed globally. If you don't, run the following:
  ```bash
-npm i --global gulp-cli
+npm i -g gulp-cli
 ```
 
-Once in project's directory, run: 
+To install project's dependencies, go to its directory and run: 
 ```bash
 npm i
 ```
 
 ## Usage
+Delete "app" folder's content and put your project in it.
+<br />
+<br />
+For more details of how the base works, please take a look at the [Folder structure](#folder-structure) section.
+<br />
 For Gulp usage, please read the [Gulp tasks](#gulp-tasks) section.
 
 ## Folder structure
-Folders' hierarchical order in Gulp tasks: "src" => "app" => "dist".
+Folders' hierarchical order in Gulp tasks: "app" => "dev" => "prod".
 
 Folder | Description
 --- | ---
-src | Contains preprocessors such as "Pug", "Sass" or "TypeScript".
-app | Development root directory and contains compiled (and non-minified) files from "src" folder.
-dist | Production root directory and contains the minified files from "app" folder.
+app | Contains all your code with preprocessors such as "Pug", "Sass" or "TypeScript".
+dev | Development root directory. Contains compiled (and non-minified) files from "app" folder.
+prod | Production root directory. Contains the minified files from "dev" folder.
 
 ## Gulp tasks
 Task | Description
 --- | ---
-default | Firstly calls the "build" task, then calls the "server" task.
-compile | Compiles the preprocessors' files from "src" folder and puts the compiled files in "app" folder.
-build | Firstly calls the "compile" task, then minify the HTML, JS, CSS and image files from "app" folder (the task that minify CSS files, also runs gulp-autoprefixer on them) and puts them (post-minified) in "dist" folder.
-server | Runs Browsersync using the "app" folder as root directory. All watches are inside this task.
+default | Calls the "build-dev" task, then calls the "server" task.
+build-dev | Generates the "dev" folder by copying "app" folder's content and compiling the preprocessors' files.
+build | Generates the "prod" folder by copying "dev" folder's content, then calling the "build-dev" task, and minifying the HTML, JS, CSS (the task that minify CSS files, also runs gulp-autoprefixer on them) and image files.
+server | Runs Browsersync using the "dev" folder as root directory. All watches are inside this task.
 
-The tasks listed above, are the main ones, all the others are called by one or more of the main ones.
+The tasks listed above, are the main ones. All the others are called by one or more of the main ones.
+<br />
 The other tasks' purpose are just to allow them to be called separately.
 
 ## Gulp watches
-- The first group of watches, looks for any changes on the "src" folder and if everything compiles, runs the "compile" task.
-
-- The second group of watches, looks for any changes on the "app" folder and if everything compiles, runs Browsersync using the "app" folder as root directory.
-
-[comment]: # (Maybe create a watch to detect any changes on "src" or "app" folder and if so, run the "build" task without running Browsersync.)
+- If any file changes on the "app" folder, runs the "build-dev" task.
+- If any file changes on the "dev" folder, runs Browsersync using the "dev" folder as root directory.
+- If any CSS or JS file changes on the "app" folder, a respective lint runs to checks their integrity and if fails, it stops the Browsersync server.
 
 ## Contribution
 If you want to help by adding support to compile any preprocessor, just add a Gulp task to do so and then call this task inside the "compile" task.

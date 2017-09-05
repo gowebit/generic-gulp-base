@@ -1,9 +1,9 @@
-dist/*
-node_modules/*
-temp/*
+release/
+node_modules/
+bower_components/
+temp/
+.DS_Store
 *.log
-*.DS_Store
 *.tmp
 *.swp
 *.swo
-package-lock.json
