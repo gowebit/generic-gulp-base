@@ -13,78 +13,60 @@ var autoprefixer = require('gulp-autoprefixer');
 
 // Default task
 gulp.task('default', function(callback) {
-    gulpSequence('build-dev', 'server', callback);
+    gulpSequence('build', 'server', callback);
 });
 
-// Task to build the "dev" folder
-gulp.task('build-dev', function(callback) {
-    gulpSequence(['css-lint', 'js-lint'], 'clean-dev', 'copy-app-to-dev', callback);
-});
-
-// Task to build the "prod" folder
+// Task to build the "dist" folder
 gulp.task('build', function(callback) {
-    gulpSequence(['build-dev', 'clean-prod'], 'copy-dev-to-prod', ['minify-img', 'minify-html', 'minify-css', 'minify-js'], callback);
+    gulpSequence('clean-dist', 'copy-app-to-dist', ['minify-img', 'minify-html', 'minify-css', 'minify-js'], callback);
 });
 
 
-// Clean the "dev" folder contents
-gulp.task('clean-dev', function() {
-    return gulp.src('release/dev')
+// Clean the "dist" folder contents
+gulp.task('clean-dist', function() {
+    return gulp.src('dist')
         .pipe(clean());
 });
 
-// Copy all files from "app" to "dev" folder
-gulp.task('copy-app-to-dev', function() {
+// Copy all files from "app" to "dist" folder
+gulp.task('copy-app-to-dist', function() {
     return gulp.src('app/**/+(*|.*)')
-        .pipe(gulp.dest('release/dev'));
+        .pipe(gulp.dest('dist'));
 });
 
-// Minify the images on "dev" folder (PNG, JPG, JPEG, GIF and BMP)
-gulp.task('minify-img', function() {
-    return gulp.src('app/**/*.+(png|jpg|jpeg|gif|bmp)')
-        .pipe(imagemin())
-        .pipe(gulp.dest('release/dev'));
-});
-
-
-// Clean the "prod" folder contents
-gulp.task('clean-prod', function() {
-    return gulp.src('release/prod')
-        .pipe(clean());
-});
-
-// Copy all files from "dev" to "prod" folder
-gulp.task('copy-dev-to-prod', function() {
-    return gulp.src('release/dev/**/+(*|.*)')
-        .pipe(gulp.dest('release/prod'));
-});
-
-// Minify the HTML files from "dev" folder to "prod" folder
+// Minify the HTML files from "app" folder to "dist" folder
 gulp.task('minify-html', function() {
-    return gulp.src('release/dev/**/*.+(htm|html)')
+    return gulp.src('app/**/*.+(htm|html)')
         .pipe(htmlmin({
             collapseWhitespace: true,
             removeComments: true
         }))
-        .pipe(gulp.dest('release/prod'));
+        .pipe(gulp.dest('dist'));
 });
 
-// Minify the CSS files from "dev" folder to "prod" folder
+// Minify the CSS files from "app" folder to "dist" folder
 gulp.task('minify-css', function() {
-    return gulp.src('release/dev/**/*.css')
+    return gulp.src('app/**/*.css')
         .pipe(autoprefixer({
             browsers: ['last 2 versions'],
             cascade: false
         }))
         .pipe(cleanCSS())
-        .pipe(gulp.dest('release/prod'));
+        .pipe(gulp.dest('dist'));
 });
 
-// Minify the JS files from "dev" folder to "prod" folder
+// Minify the JS files from "app" folder to "dist" folder
 gulp.task('minify-js', function() {
-    return gulp.src('release/dev/**/*.js')
+    return gulp.src('app/**/*.js')
         .pipe(uglify())
-        .pipe(gulp.dest('release/prod'));
+        .pipe(gulp.dest('dist'));
+});
+
+// Minify the images on "dist" folder (PNG, JPG, JPEG, GIF and BMP)
+gulp.task('minify-img', function() {
+    return gulp.src('dist/**/*.+(png|jpg|jpeg|gif|bmp)')
+        .pipe(imagemin())
+        .pipe(gulp.dest('dist'));
 });
 
 
@@ -108,7 +90,7 @@ gulp.task('js-lint', function() {
 gulp.task('server', function() {
     browserSync.init({
         server: {
-            baseDir: 'release/dev' // Root directory for Browsersync server
+            baseDir: 'app' // Root directory for Browsersync server
         }
     });
 
@@ -128,9 +110,6 @@ gulp.task('server', function() {
     });
     
 
-    // Run "build-dev" task if any file changes on "app" folder
-    gulp.watch('app/**/*', ['build-dev']);
-
-    // Reload Browsersync if any file changes on "dev" folder
-    gulp.watch('release/dev/**/*').on('change', browserSync.reload);
+    // Reload Browsersync if any file changes on "app" folder
+    gulp.watch('app/**/*').on('change', browserSync.reload);
 });

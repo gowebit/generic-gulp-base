@@ -1,15 +1,14 @@
 {
   "name": "generic-gulp-base",
   "version": "0.2.0",
-  "description": "The purpose of this base is to easily compile the most used front-end preprocessors and to minify all the HTML, CSS, JS and image files of a project.",
+  "description": "The purpose of this base is to minify all the HTML, CSS, JS and image files of a project.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "gulp",
-    "build-dev": "gulp build-dev",
     "build": "gulp build"
   },
-  "author": "Gabriel Gomes",
+  "author": "Gowebit",
   "license": "MIT",
   "devDependencies": {
     "browser-sync": "^2.18.8",

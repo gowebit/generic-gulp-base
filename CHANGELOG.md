@@ -1,10 +1,14 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
-## [Unreleased]
-### Added
-- Task to compile SASS files.
-- Task to compile PUG files.
+## [1.0.0] - 2017-09-05
+### Changed
+- Changes in "gulpfile.js" regarding some tasks' paths.
+- "prod" folder is now "dist" folder and is in another path.
+- "README.md".
+### Removed
+- Preprocessor capability.
+- "dev" folder.
 
 ## [0.2.0] - 2017-09-05
 ### Added
