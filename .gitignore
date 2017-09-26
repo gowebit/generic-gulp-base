@@ -1,9 +1,9 @@
-release/
 node_modules/
 bower_components/
 temp/
-.DS_Store
 *.log
 *.tmp
 *.swp
 *.swo
+desktop.ini
+.DS_Store

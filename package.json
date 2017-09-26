@@ -1,6 +1,6 @@
 {
   "name": "generic-gulp-base",
-  "version": "0.2.0",
+  "version": "1.0.0",
   "description": "The purpose of this base is to minify all the HTML, CSS, JS and image files of a project.",
   "main": "index.js",
   "scripts": {
