@@ -51,7 +51,9 @@ gulp.task('minify-css', function() {
             browsers: ['last 2 versions'],
             cascade: false
         }))
-        .pipe(cleanCSS())
+        .pipe(cleanCSS({ 
+            rebase: false
+        }))
         .pipe(gulp.dest('dist'));
 });
 
